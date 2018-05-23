@@ -1,6 +1,6 @@
 # New Relic Synthetics Exporter Design Doc
 
-##Background
+## Background
 
 Some of our teams use New Relic Synthetics to monitor services from an external vantage.  This provides useful insight into service behavior.  Unfortunately, we do our alerting with Prometheus and prefer to have our alerts in one spot, particularly since Prometheus and Alert Manager's rules are more flexible than New Relic's alerts.
 
