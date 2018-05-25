@@ -15,7 +15,8 @@ So what to do?  Fortunately the [Insights Query API](https://docs.newrelic.com/d
 A simple proof-of-concept is something like this:
 
 ```
--> curl -H "Accept: application/json" -H "X-Query-Key: <query key>" "https://insights-api.newrelic.com/v1/accounts/<account-number>/query?nrql=SELECT+%2A+FROM+SyntheticCheck+SINCE+5+MINUTES+AGO" | jq '.'
+-> curl -H "Accept: application/json" -H "X-Query-Key: <query key>" \ "https://insights-api.newrelic.com/v1/accounts/<account-number>/query?nrql=SELECT+%2A+FROM+SyntheticCheck+SINCE+5+MINUTES+AGO" \
+| jq '.'
 
 {
   "results": [
@@ -80,25 +81,4 @@ The value for this metric will be 1 if the result of the synthetic check is 'SUC
    * `monitor_name` -- the name of the monitor, as used in the New Relic UI (e.g. "My Synthetic Check")
    * `location_name` -- the location of the monitor in human readable form (e.g. "Dublin, IE")
    * `location` -- the datacenter where the check was run (e.g. "AWS_EU_WEST_1")
-   * `team` -- the team label for the monitor
    * `account` -- the account ID that can be used to reconstruct the URL to the monitor
-
-## Technical design
-
-If the design overview becomes too long, split into sub chapters about various aspects or components.
-
-## Testing plan
-
-How can the design be tested? How do we plan to do integration and release tests? Is it easy to set up a sandbox? Can you test against it? Can you test changes to it? Test accounts, test tokens etc. Enabling A/B testing.
-
-## Monitoring and Alerting
-
-How will we make sure that the system stays up? What kind of capabilities should we monitor? What kind of alerting must be in place before we can go live in production? 
-
-## Privacy and Security concerns
-
-What process is set up to make things secure? What data does this design touch on? If it is user data, document what fields we store, how long we store them, and who has access.
-
-If the design is exposed to the internet, what measures are taken to protect us from XSS, DOS attacks? How do we plug security holes fast?
-
-Can people access things they are not authorized for? How do we build secure systems that call this system? How do we manage secrets?
