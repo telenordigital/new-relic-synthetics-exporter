@@ -13,7 +13,8 @@ newrelic_synthetics_up = Gauge('newrelic_synthetics_up',
                                  'account' ])
 
 def setup_and_parse_command_line():
-    parser = ArgumentParser(description='Generate metrics for New Relic Synthetics results')
+    parser = ArgumentParser(prog='new_relic_synthetics_exporter', 
+                            description='Generate metrics for New Relic Synthetics results')
     parser.add_argument('--port', type=int, default=9234,
                         help='Port for /metrics endpoint')
     parser.add_argument('--account', required=True, help='New Relic account number')
@@ -60,5 +61,8 @@ def serve(args):
         schedule.run_pending()
         time.sleep(10)
 
-if __name__ == "__main__":
+def main():
     serve(setup_and_parse_command_line())
+
+if __name__ == "__main__":
+    main()
